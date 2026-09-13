@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎼 Evenmusic - Escuela Musical</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- LOGIN (RF01 - 4 roles: Admin, Profesor, Estudiante, Acudiente) -->
+    <!-- ============================================ -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="login-logo">
+                <h1><i class="fas fa-music"></i> Evenmusic</h1>
+                <div class="music-notes">🎵 🎶 🎹 🎻</div>
+                <p>Viaje Musical - Escuela de Música</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Correo electrónico</label>
+                    <input type="email" id="loginEmail" placeholder="tu@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Contraseña</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-user-tag"></i> Tipo de acceso</label>
+                    <select id="loginRole">
+                        <option value="admin">🛡️ Administrador</option>
+                        <option value="teacher">👨‍🏫 Profesor</option>
+                        <option value="student">👦 Estudiante</option>
+                        <option value="parent">👨‍👩‍👧 Acudiente (Padre/Madre)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p><strong>🔒 Demo </strong></p>
+                <div class="demo-users">
+                    <span onclick="quickLogin('admin')">🛡️ admin@evenmusic.com</span>
+                    <span onclick="quickLogin('teacher')">👨‍🏫 profe@evenmusic.com</span>
+                    <span onclick="quickLogin('student')">👦 alumno@evenmusic.com</span>
+                    <span onclick="quickLogin('parent')">👨‍👩‍👧 padre@evenmusic.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- APP PRINCIPAL (cambia según rol)             -->
+    <!-- ============================================ -->
+    <div id="appScreen" class="screen">
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1><i class="fas fa-music"></i> Evenmusic</h1>
+                <span class="role-badge" id="roleBadge"></span>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="avatar" id="userAvatar"></span>
+                    <div>
+                        <strong id="userName"></strong>
+                        <small id="userEmail"></small>
+                    </div>
+                </div>
+                <button class="btn-icon" onclick="handleLogout()" title="Cerrar sesión">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- CONTENEDOR PRINCIPAL -->
+        <div class="app-body">
+            <!-- SIDEBAR (menú dinámico por rol) -->
+            <aside class="sidebar" id="sidebar"></aside>
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <main class="main-content" id="mainContent"></main>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MODAL GENÉRICO                                -->
+    <!-- ============================================ -->
+    <div id="modalOverlay" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="btn-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer" id="modalFooter"></div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toastContainer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/views/admin.js"></script>
+    <script src="js/views/teacher.js"></script>
+    <script src="js/views/student.js"></script>
+    <script src="js/views/parent.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
